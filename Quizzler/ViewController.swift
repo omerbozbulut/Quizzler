@@ -19,16 +19,21 @@ class ViewController: UIViewController {
     
     var questionNumber : Int = 0
     
-    let seconds = 0.4
+    let seconds = 0.2
     
-    let question = [["Two + Five = Seven ?","True"],
-                    ["Two + Four = Six ?","True"],
-                    ["Three + Five = Ten ?","False"]]
+    var score : Int = 0
+    
+    let question = [Question(text : "Two + Five = Seven ?", answer : "True"),
+                    Question(text : "Two + Four = Six ?", answer : "True"),
+                    Question(text : "Three + Five = Ten ?", answer : "False"),
+                    Question(text : "One + Four = Five ?", answer : "True"),
+                    Question(text : "Eight + Four = Ten ?", answer : "False"),
+                    Question(text : "Seven + Four = Eleven ?", answer : "True")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //progressView.progress = 0.0
-        QuestionLabel.text = question[0][0]
+        QuestionLabel.text = question[0].text
+        progressView.progress = 0.0
     }
 
     
@@ -36,19 +41,28 @@ class ViewController: UIViewController {
         result(answer : sender.currentTitle!)
         if question.count-1 > questionNumber{
             questionNumber+=1
+            updateProgressView()
+            updateQuestion()
+        }else{
+            QuestionLabel.text = "Score: \(score)/\(question.count)"
+            progressView.progress = 1.0
         }
-        updateQuestion()
     }
     
     func updateQuestion(){
-        QuestionLabel.text = question[questionNumber][0]
+        QuestionLabel.text = question[questionNumber].text
+    }
+    
+    func updateProgressView(){
+        let percentageProgress : Float = Float(questionNumber)/Float(question.count)
+        progressView.progress = percentageProgress
     }
     
     func result(answer : String) {
-        if answer == question[questionNumber][1]{
+        if question[questionNumber].answer == answer{
+            score+=1
             if TrueUIButton.titleLabel?.text == answer {
                 TrueUIButton.backgroundColor = UIColor.green
-                print("true")
                 DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                     self.TrueUIButton.backgroundColor = UIColor.clear
                 }
@@ -57,9 +71,19 @@ class ViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                     self.FalseUIButton.backgroundColor = UIColor.clear
                 }
-                
+        }
+        }else{
+            if TrueUIButton.titleLabel?.text == answer {
+                TrueUIButton.backgroundColor = UIColor.red
+                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                    self.TrueUIButton.backgroundColor = UIColor.clear
+                }
+            }else if FalseUIButton.titleLabel?.text == answer{
+                FalseUIButton.backgroundColor = UIColor.red
+                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                    self.FalseUIButton.backgroundColor = UIColor.clear
+                }
             }
         }
     }
 }
-
