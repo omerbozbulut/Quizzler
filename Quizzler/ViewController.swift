@@ -38,8 +38,8 @@ class ViewController: UIViewController {
 
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        result(answer : sender.currentTitle!)
         if question.count-1 > questionNumber{
+            result(answer : sender.currentTitle!)
             questionNumber+=1
             updateProgressView()
             updateQuestion()
