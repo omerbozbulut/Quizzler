@@ -21,8 +21,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dp5-IZ-I4j">
                                 <rect key="frame" x="15" y="59" width="384" height="793"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5N9-Tc-Cty">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="LqB-PG-YFI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-xD-zz0">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="596"/>
+                                        <rect key="frame" x="0.0" y="76" width="384" height="520"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,6 +48,7 @@
                                         <state key="normal" title="True" backgroundImage="Rectangle"/>
                                         <connections>
                                             <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyr-Ld-uXI"/>
+                                            <action selector="updateUI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a4d-hm-8O5"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkQ-UV-lWP">
@@ -52,6 +62,7 @@
                                         <state key="normal" title="False" backgroundImage="Rectangle"/>
                                         <connections>
                                             <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eTB-MH-wH7"/>
+                                            <action selector="updateUI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uAm-Es-J6K"/>
                                         </connections>
                                     </button>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gHR-Ll-0r4">
@@ -80,6 +91,7 @@
                     <connections>
                         <outlet property="FalseUIButton" destination="IkQ-UV-lWP" id="Qku-hP-AH2"/>
                         <outlet property="QuestionLabel" destination="G3k-xD-zz0" id="sW4-lt-emO"/>
+                        <outlet property="ScoreLabel" destination="5N9-Tc-Cty" id="cNu-72-5U7"/>
                         <outlet property="TrueUIButton" destination="IlG-Qo-usH" id="DUC-0g-cSR"/>
                         <outlet property="progressView" destination="gHR-Ll-0r4" id="UKC-lg-iiT"/>
                     </connections>
